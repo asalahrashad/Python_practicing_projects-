@@ -1,0 +1,17 @@
+[project]
+name = "python-practicing-projects"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Ahmed Salah Rashad", email = "asalahrash4d@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+python-practicing-projects = "python_practicing_projects:main"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
