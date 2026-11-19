@@ -1,0 +1,65 @@
+
+
+                  PROJECT SUMMARY: CLI QUIZ GAME
+
+
+1. Project Idea:
+
+
+An interactive Command-Line Interface (CLI) quiz application built in Python. 
+It loads a set of questions and answers from an external YAML file, shuffles 
+them into a random order, prompts the user for answers, and calculates the 
+final score and percentage at the end of the session.
+
+The core goal is to decouple data (the questions) from the application logic, 
+allowing new questions to be added or modified easily without touching the code.
+
+
+2. Implementation Approach:
+
+
+We implemented the solution as a straightforward procedural script with a strong 
+focus on defensive programming and input validation across three main phases:
+
+  a. Safe File Loading:
+     - Used the PyYAML library with `yaml.safe_load()` to prevent arbitrary 
+       code execution risks.
+     - Wrapped file operations in a `try / except` block to gracefully handle 
+       missing files (`FileNotFoundError`) and syntax issues (`YAMLError`), 
+       exiting cleanly instead of crashing with raw tracebacks.
+
+  b. Data Validation & Filtering:
+     - Verified that the YAML root structure is a dictionary containing the 
+       expected `questions list.
+     - Used a list comprehension to filter out malformed entries, ensuring 
+       only dictionaries with both `question` and `answer` keys are loaded.
+
+  c. Game Loop & Evaluation:
+     - Randomized the question order on every run using `random.shuffle()`.
+     - Normalized both user inputs and stored answers (converting to strings, 
+       stripping whitespace, and lowercasing) for reliable comparison.
+     - Calculated and displayed the final score alongside a formatted percentage.
+
+
+3. Potential Improvements (Intentionally Omitted):
+
+
+Several architectural and feature enhancements were considered but intentionally 
+left out to keep the codebase lean and avoid over-engineering for a simple script:
+
+  - Modularization (Functions / OOP):
+    Splitting a short, linear script into multiple functions, classes, or 
+    modules would add unnecessary boilerplate without improving readability.
+
+  - Type Hints & `pathlib`:
+    While great practice for large-scale codebases, strict type annotations 
+    and object-oriented path handling were omitted to keep the script minimal.
+
+  - Extended UX Features (Replay loop, question numbering, showing correct 
+    answers on mistakes, or persisting high scores):
+    Nice-to-have additions that go beyond the scope of a simple Minimum 
+    Viable Product (MVP).
+
+  - Question Categories & Multiple-Choice Support (MCQ):
+    Would require a significantly more complex YAML schema and validation 
+    pipeline than the current lightweight format warrants.
